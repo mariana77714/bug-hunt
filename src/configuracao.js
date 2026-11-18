@@ -1,3 +1,5 @@
+// O HTML da página está em views/config.html.
+
 const fs = require('fs');
 const path = require('path');
 
@@ -22,7 +24,6 @@ const parametros = [
   { name: 'tempo_limite_min', type: 'integer' },
   { name: 'feedback_imediato', type: 'boolean' }
 ];
-
 
 function paginaConfiguracao() {
   return fs.readFileSync(path.join(__dirname, '..', 'views', 'config.html'), 'utf8');

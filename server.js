@@ -1,8 +1,11 @@
+// Bug Hunt - Activity Provider para a Inven!RA
+// Semana 1: resposta aos cinco pedidos com URL fixo, com dados de exemplo.
+
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { paginaConfiguracao, parametros } = require('./src/configuracao');
-const { listaAnaliticas, analiticasDaAtividade } = require('./src/analiticas');
+const { listaAnaliticas, analiticasDaAtividade, relatoriosDoAluno } = require('./src/analiticas');
 const { registarInstancia } = require('./src/instancias');
 
 const PORTA = process.env.PORT || 3000;
@@ -43,12 +46,26 @@ function lerCorpo(req) {
 }
 
 function paginaRelatorios(activityID, stdID) {
+  const dados = relatoriosDoAluno(stdID);
+  const linhas = dados
+    ? dados.relatorios.map(r => `<tr><td>${r.minuto}</td><td>${escapar(r.texto)}</td><td>${r.completo ? 'sim' : 'não'}</td><td>${escapar(r.resultado)}</td></tr>`).join('')
+    : '<tr><td colspan="4">Sem relatórios para este aluno.</td></tr>';
   return `<!DOCTYPE html>
-<html lang="pt"><head><meta charset="utf-8"><title>Relatórios submetidos</title></head>
-<body style="font-family:Arial,sans-serif;margin:24px">
+<html lang="pt"><head><meta charset="utf-8"><title>Relatórios submetidos</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 860px; margin: 24px auto; padding: 0 16px; color: #1f2933; }
+  table { border-collapse: collapse; width: 100%; }
+  th, td { border: 1px solid #dde3e8; padding: 8px; text-align: left; vertical-align: top; font-size: 14px; }
+  th { background: #f4f6f8; }
+</style></head>
+<body>
 <h2>Relatórios submetidos</h2>
-<p>Atividade: ${escapar(activityID)} | Aluno: ${escapar(stdID)}</p>
-<p>Dados de exemplo. A listagem real dos relatórios fica disponível quando o serviço "Provide activity" for implementado.</p>
+<p>Atividade: ${escapar(activityID)} | Aluno: ${escapar(stdID)}${dados ? ' | Página-alvo: ' + escapar(dados.paginaAlvo) : ''}</p>
+<table>
+<tr><th>Minuto</th><th>Relatório do aluno</th><th>Completo</th><th>Resultado</th></tr>
+${linhas}
+</table>
+<p>Dados de exemplo, até o serviço "Provide activity" estar implementado.</p>
 </body></html>`;
 }
 

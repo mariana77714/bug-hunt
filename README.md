@@ -14,7 +14,9 @@ Na atividade Bug Hunt, o aluno explora uma página-alvo com bugs plantados e sub
 | Analíticas da atividade (analytics_url) | POST | `/analytics` com `{"activityID": "<id>"}` |
 | Lista de analíticas (analytics_list_url) | GET | `/analytics-list` |
 
-O serviço "Provide activity" ainda não está implementado.
+Sendo que o serviço "Provide activity" ainda não está implementado.
+
+Aberto no navegador (GET), o endereço `/analytics` mostra uma página de teste que envia o pedido POST e apresenta a resposta.
 
 ## Executar localmente
 
@@ -29,8 +31,9 @@ O servidor fica disponível em `http://localhost:3000`.
 ## Estrutura
 
 - `server.js` - receção dos pedidos e encaminhamento para cada serviço
-- `src/configuracao.js` - página de configuração e lista de parâmetros
+- `src/configuracao.js` - lista de parâmetros e leitura da página de configuração
 - `src/analiticas.js` - lista de analíticas e dados de exemplo
 - `src/instancias.js` - registo das instâncias criadas no deploy
+- `views/` - páginas HTML (página inicial, configuração e teste das analíticas)
 
 Autora: Mariana Siqueira

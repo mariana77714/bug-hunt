@@ -5,7 +5,7 @@
 <title>Bug Hunt - configuração</title>
 <style>
   body { font-family: Arial, sans-serif; max-width: 640px; margin: 20px; }
-  label.titulo { display: block; font-weight: bold; margin-top: 14px; }
+  label.titulo, .titulo { display: block; font-weight: bold; margin-top: 14px; }
   select, input[type=number], textarea { width: 100%; padding: 4px; }
 </style>
 </head>
@@ -19,11 +19,18 @@
 </select>
 
 <label class="titulo" for="pagina_alvo">Página-alvo (no modo fixo)</label>
-<select id="pagina_alvo" name="pagina_alvo">${opcoesPaginas}</select>
+<select id="pagina_alvo" name="pagina_alvo">
+  <option value="loja-checkout">Loja online: checkout</option>
+  <option value="formulario-inscricao">Formulário de inscrição</option>
+  <option value="simulador-credito">Simulador de crédito</option>
+</select>
 
-<span class="titulo" style="display:block;font-weight:bold;margin-top:14px;">Tipos de bug ativos</span>
-${caixasBugs}
-<input type="hidden" id="bugs_ativos" name="bugs_ativos" value="${tiposBug.map(t => t.id).join(',')}">
+<span class="titulo">Tipos de bug ativos</span>
+<label><input type="checkbox" class="bh-tipo" value="validacao" checked> Validação de campos</label><br>
+<label><input type="checkbox" class="bh-tipo" value="calculo" checked> Cálculo</label><br>
+<label><input type="checkbox" class="bh-tipo" value="mensagens" checked> Mensagens de erro</label><br>
+<label><input type="checkbox" class="bh-tipo" value="interface" checked> Interface</label>
+<input type="hidden" id="bugs_ativos" name="bugs_ativos" value="validacao,calculo,mensagens,interface">
 
 <label class="titulo" for="instrucoes">Instruções para o aluno</label>
 <textarea id="instrucoes" name="instrucoes" rows="4">Explore a página e registe cada bug que encontrar, indicando os passos para o reproduzir.</textarea>
@@ -38,6 +45,7 @@ ${caixasBugs}
 </select>
 
 <script>
+  // junta as caixas selecionadas no campo bugs_ativos
   document.querySelectorAll('.bh-tipo').forEach(function (caixa) {
     caixa.addEventListener('change', function () {
       var ativos = Array.from(document.querySelectorAll('.bh-tipo:checked')).map(function (c) { return c.value; });

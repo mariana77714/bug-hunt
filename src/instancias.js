@@ -1,5 +1,5 @@
 // Registo das instâncias criadas no deploy (user_url).
-// Por agora fica em memória; mais tarde passa para a base de dados.
+// Por agora "fica em memória", posteriormente passa para a base de dados.
 
 const instancias = new Map();
 
