@@ -1,0 +1,14 @@
+{
+  "name": "bug-hunt",
+  "version": "0.1.0",
+  "description": "Activity Provider Bug Hunt para a Inven!RA",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "author": "Mariana Siqueira",
+  "license": "MIT"
+}
