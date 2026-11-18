@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Bug Hunt - Activity Provider</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; color: #1f2933; }
+  li { margin-bottom: 6px; }
+  .metodo { font-family: monospace; font-weight: bold; padding: 2px 6px; border-radius: 4px; background: #e3f4ea; color: #1d7a46; }
+  .post { background: #e4edfb; color: #2457a6; }
+  pre { background: #0f1c26; color: #d6e2ea; padding: 14px; border-radius: 8px; overflow: auto; }
+</style>
+</head>
+<body>
+<h1>Bug Hunt</h1>
+<p>Activity Provider para a Inven!RA. Nesta fase, os serviços respondem com dados de exemplo.</p>
+
+<h2>Serviços</h2>
+<ul>
+  <li><span class="metodo">GET</span> <a href="/config">/config</a>: página de configuração</li>
+  <li><span class="metodo">GET</span> <a href="/json-params">/json-params</a>: parâmetros da configuração</li>
+  <li><span class="metodo">GET</span> <a href="/deploy?activityID=teste123">/deploy?activityID=teste123</a>: deploy de uma instância</li>
+  <li><span class="metodo post">POST</span> <a href="/analytics">/analytics</a>: analíticas (abre a página de teste)</li>
+  <li><span class="metodo">GET</span> <a href="/analytics-list">/analytics-list</a>: lista de analíticas</li>
+</ul>
+
+<h2>Ficheiro de registo</h2>
+<pre>{
+  "name": "Bug Hunt",
+  "config_url": "{{base}}/config",
+  "json_params_url": "{{base}}/json-params",
+  "user_url": "{{base}}/deploy",
+  "analytics_url": "{{base}}/analytics",
+  "analytics_list_url": "{{base}}/analytics-list"
+}</pre>
+</body>
+</html>

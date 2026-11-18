@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>Bug Hunt - teste das analíticas</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 760px; margin: 24px auto; padding: 0 16px; color: #1f2933; }
+  h1 { font-size: 22px; }
+  pre { background: #0f1c26; color: #d6e2ea; padding: 14px; border-radius: 8px; overflow: auto; white-space: pre-wrap; }
+  input { padding: 6px 8px; width: 200px; }
+  button { padding: 7px 14px; background: #12324a; color: #fff; border: 0; border-radius: 6px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>Analíticas da atividade</h1>
+<p>A Inven!RA obtém as analíticas com um pedido <b>POST</b> a este endereço, enviando o identificador da atividade em JSON.</p>
+<p>
+  <input type="text" id="activityID" value="teste123">
+  <button id="enviar">Enviar POST</button>
+</p>
+<h2>Resposta</h2>
+<pre id="resposta">(ainda sem resposta)</pre>
+
+<script>
+  document.getElementById('enviar').addEventListener('click', async function () {
+    const saida = document.getElementById('resposta');
+    saida.textContent = 'A enviar...';
+    const r = await fetch('/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ activityID: document.getElementById('activityID').value })
+    });
+    saida.textContent = 'HTTP ' + r.status + '\n\n' + JSON.stringify(await r.json(), null, 2);
+  });
+</script>
+</body>
+</html>

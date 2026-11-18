@@ -1,6 +1,3 @@
-// Analíticas (analytics_list_url e analytics_url).
-// Nesta fase os valores são dados de exemplo; a recolha real chega com o serviço "Provide activity".
-
 const listaAnaliticas = {
   qualAnalytics: [
     { name: 'Relatórios submetidos', type: 'URL' },
